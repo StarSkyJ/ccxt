@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 # Supresses unwanted user interaction (like "Please select the geographic area" when installing tzdata)
 ENV DEBIAN_FRONTEND=noninteractive
@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y nodejs
 # Python 3
 RUN apt-get update && apt-get install -y --no-install-recommends python3 python3-pip
 RUN pip3 install 'idna==2.9' --force-reinstall
-RUN pip3 install --upgrade setuptools==65.7.0
+RUN pip3 install --upgrade setuptools==65.7.1
 RUN pip3 install tox
 RUN pip3 install aiohttp
 RUN pip3 install cryptography
@@ -35,7 +35,7 @@ RUN curl -fsSL https://packages.microsoft.com/config/ubuntu/20.04/packages-micro
 RUN dpkg -i packages-microsoft-prod.deb
 RUN rm packages-microsoft-prod.deb
 RUN apt-get update
-RUN apt-get install -y dotnet-sdk-7.0
+RUN apt-get install -y dotnet-sdk-7.1
 # Installs as a local Node & Python module, so that `require ('ccxt')` and `import ccxt` should work after that
 RUN npm install
 RUN ln -s /ccxt /usr/lib/node_modules/
